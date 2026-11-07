@@ -1,0 +1,1 @@
+self.addEventListener('install',e=>e.waitUntil(caches.open('rural-health-v1').then(c=>c.addAll(['/','/manifest.webmanifest'])))); self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(x=>x||fetch(e.request))));

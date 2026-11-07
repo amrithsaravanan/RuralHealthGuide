@@ -1,0 +1,7 @@
+{
+  "name": "rural-health-guide",
+  "private": true,
+  "workspaces": ["client", "server"],
+  "scripts": {"dev": "concurrently \"npm run server\" \"npm run client\"", "server": "node server/src/index.js", "client": "npm --prefix client run dev", "seed": "node server/src/seed.js"},
+  "devDependencies": {"concurrently": "^9.1.2"}
+}
