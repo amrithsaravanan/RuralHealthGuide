@@ -60,4 +60,10 @@ app.post('/api/assess-symptoms', (req, res) => {
 app.get('/api/facilities/nearby', (_, res) => res.json([{ name: 'Nearest Primary Health Centre', type: 'Primary Health Centre', address: 'Sample rural health facility', phone: 'Local health number', lat: 12.9716, lng: 77.5946, mapUrl: 'https://maps.google.com/?q=12.9716,77.5946' }]));
 app.get('/api/guidance/:id', (req, res) => { const g = db.prepare('SELECT * FROM guidance WHERE id=?').get(req.params.id); if (!g) return res.status(404).json({ error: 'Guidance not found.' }); res.json({ ...g, self_care_steps: JSON.parse(g.self_care_steps), warning_signs: JSON.parse(g.warning_signs) }); });
 app.use((err, _, res, __) => { if (err instanceof SyntaxError && err.status === 400 && 'body' in err) return res.status(400).json({ error: 'Request body must be valid JSON.' }); res.status(500).json({ error: 'Unexpected server error.' }); });
-app.listen(port, () => console.log(`API running on http://localhost:${port}`));
+// Export the app for serverless hosts such as Vercel. Keep the listener for
+// local development and traditional Node hosting.
+export { app };
+
+if (process.env.VERCEL !== '1') {
+  app.listen(port, () => console.log(`API running on http://localhost:${port}`));
+}

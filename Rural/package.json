@@ -1,7 +1,9 @@
 {
   "name": "rural-health-guide",
   "private": true,
+  "type": "module",
   "workspaces": ["client", "server"],
-  "scripts": {"dev": "concurrently \"npm run server\" \"npm run client\"", "server": "node server/src/index.js", "client": "npm --prefix client run dev", "seed": "node server/src/seed.js"},
+  "scripts": {"dev": "concurrently \"npm run server\" \"npm run client\"", "server": "node server/src/index.js", "client": "npm --prefix client run dev", "build": "npm --prefix client run build", "seed": "node server/src/seed.js"},
+  "engines": {"node": ">=22.5.0"},
   "devDependencies": {"concurrently": "^9.1.2"}
 }

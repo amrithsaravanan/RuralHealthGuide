@@ -6,7 +6,9 @@ import './professional.css';
 import './conditions.css';
 import './child-friendly.css';
 
-const API = 'http://localhost:4000/api';
+// In production the frontend and API share the same origin. Vite's dev
+// server proxy keeps the local development experience unchanged.
+const API = import.meta.env.VITE_API_URL || '/api';
 const disclaimer = 'This tool provides general information only and is not a substitute for professional medical diagnosis.';
 const labels = {
   en: { title:'Rural Health Guide', subtitle:'Simple, practical health information', about:'About', back:'Back', start:'Choose who needs help', child:'Child', adult_male:'Adult male', adult_female:'Adult female', older_adult:'Older adult', symptoms:'What symptoms are present?', conditions:'Additional health information', pregnant:'Pregnant', chronic_illness:'Long-term condition', immunocompromised:'Weakened immune system', infant_under_3_months:'Infant under 3 months', continue:'Continue', duration:'How long?', severity:'How severe?', less:'Less than 1 day', '1to3':'1–3 days', '3plus':'More than 3 days', week:'More than 1 week', mild:'Mild', moderate:'Moderate', severe:'Severe', assess:'See guidance', read:'Read aloud', again:'Start again', warning:'Warning signs', facility:'Nearby care', loading:'Loading…', retry:'Try again', aboutTitle:'About Rural Health Guide' },
